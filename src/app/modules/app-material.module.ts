@@ -6,7 +6,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { NgModule } from '@angular/core';
+
+
 
 @NgModule({
   exports: [
@@ -18,6 +21,7 @@ import { NgModule } from '@angular/core';
     MatToolbarModule,
     MatTooltipModule,
     MatSnackBarModule,
+    MatGridListModule,
   ],
 })
 export class AppMaterialModule {}

@@ -1,23 +1,18 @@
-<!-- <div class="grid-container"> -->
 <div class="dimension">
     <div class="container-grid-sys">
         <div class="left">
             <div>
+                {{ title }}          
             </div>
             <div class="body">
-                <div #media [innerHTML]="mathContent" style="min-height: 65vh;">
-
-                </div>
+                <textarea class='styled' placeholder="Enter text here..." [(ngModel)]="mathContent"
+                    (ngModelChange)="doSomething($event)"></textarea>
                 <div id='preview'>
                     <h2>Preview</h2>
                     <mat-divider></mat-divider>
                     <mathjax [content]='mathContent' class="box"></mathjax>
                 </div>
             </div>
-
         </div>
-        <div></div>
     </div>
 </div>
-
-<!-- When $$ a \ne 0 $$, there are two solutions to $$ ax^2 + bx + c = 0 $$ and they are $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$ -->

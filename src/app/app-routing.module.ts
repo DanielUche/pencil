@@ -5,9 +5,12 @@ import {
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BASE, HOME, EDITOR } from './constants';
+import { BASE, HOME, EDITOR, TEXTAREA } from './constants';
 import { HomeComponent } from './components/home/home.component'
 import { EditorComponent } from './editor/editor.component';
+import { WithTextareaComponent } from './with-textarea/with-textarea.component';
+
+
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([HOME]);
 
@@ -24,6 +27,12 @@ const routes: Routes = [
   {
     path: EDITOR,
     component: EditorComponent, 
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: TEXTAREA,
+    component: WithTextareaComponent, 
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },

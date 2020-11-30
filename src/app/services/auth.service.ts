@@ -24,6 +24,14 @@ export class AuthService {
     return from(this.afAuth.signInWithPopup(new auth.GoogleAuthProvider()));
   }
 
+  get currentUser() {
+    return this.user.value;
+  }
+
+  get loggedIn() {
+    return !!this.user.value;
+  }
+
   logout(): Observable<void> {
     return from(this.afAuth.signOut());
   }
