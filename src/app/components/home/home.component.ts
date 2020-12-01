@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
 
-
 interface FormData {
   userID: string;
   content: string;
@@ -13,13 +12,13 @@ interface FormData {
 })
 export class HomeComponent implements OnInit {
 
- 
  constructor(
   ) {
 
   }
 
   ngOnInit(): void {
+    
   }
 }
 

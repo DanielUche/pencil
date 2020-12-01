@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import * as lodash from 'lodash';
+import { AuthService } from 'src/app/services/auth.service';
+import { AngularFirestore } from "@angular/fire/firestore";
 
+interface FormData {
+  userID: string;
+  content: string;
+}
 @Component({
   selector: 'app-with-textarea',
   templateUrl: './with-textarea.component.html',
@@ -7,15 +14,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WithTextareaComponent implements OnInit {
 
-  title = 'Mathjax playground in Angular 6';
-  mathContent = `When $ a \\ne 0 $, there are two solutions to $ ax^2 + bx + c = 0 $ and they are $$ x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$`
-  constructor() { }
+  title = 'This uses html textarea';
+  mathContent = '';
+  msg = '';
+  doc: string = 'editor-textarea';
+  user: any;
+  docId: string;
+  docs = [];
+
+  constructor(
+    private firestore: AngularFirestore,
+    private readonly auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth.user$.subscribe((user) => {
+      this.user = user;
+      const docRef = this.firestore.collection(this.doc, ref => ref.where("userID", "==", this.user.uid));
+      docRef.get().subscribe(ss => { });
+      docRef.snapshotChanges().forEach((changes) => {
+        changes.map((a) => {
+          this.docId = a.payload.doc.id;
+        });
+      });
+      const collectionRef = this.firestore.collection(this.doc);
+      const collectionInstance = collectionRef.valueChanges();
+      collectionInstance.subscribe(ss => {
+        this.docs = ss;
+        if (this.docs.length) {
+          this.mathContent = this.docs[0].content;
+        }
+      });
+    });
   }
 
-  doSomething(e) {
-    console.log(e)
-  }
 
+  doSomething = lodash.debounce(function () {
+    this.msg = 'Saving ...'
+    this.autoSave().then(() => {
+      this.msg = 'Last saved as ' + new Date().toDateString()
+    })
+  }, 10000);
+
+  async autoSave() {
+    const payload: FormData = {
+      userID: this.user.uid,
+      content: this.mathContent
+    }
+    if (!this.docs.length) {
+      await this.firestore.collection(this.doc).add(payload);
+    } else {
+      await this.firestore.collection(this.doc).doc(this.docId).update({ 'content': payload.content });
+    }
+  }
 }

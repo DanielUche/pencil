@@ -4,9 +4,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { MEDIUMCONFIG } from '../constants';
 
-
-
-
 interface FormData {
   userID: string;
   content: string;
@@ -25,8 +22,8 @@ export class EditorComponent implements OnInit {
   docId: string;
   @ViewChild("media") media: ElementRef;
   editting: boolean = false;
-  editableContent: string = ''
-  mathContent: string = '' //`When $ a \\ne 0 $, there are two solutions to $ ax^2 + bx + c = 0 $ and they are $$ x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$`;
+  editableContent: string = '';
+  mathContent: string = '';
   constructor(
     private firestore: AngularFirestore,
     private readonly auth: AuthService

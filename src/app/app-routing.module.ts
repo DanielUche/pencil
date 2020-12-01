@@ -1,6 +1,7 @@
 import {
   AngularFireAuthGuard,
   redirectUnauthorizedTo,
+  redirectLoggedInTo,
 } from '@angular/fire/auth-guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -13,6 +14,7 @@ import { WithTextareaComponent } from './with-textarea/with-textarea.component';
 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([HOME]);
+const redirectLoggedIn = () => redirectLoggedInTo([EDITOR]);
 
 const routes: Routes = [
   {
@@ -23,6 +25,8 @@ const routes: Routes = [
   {
     path: HOME,
     component: HomeComponent,
+    canActivate: [AngularFireAuthGuard], 
+    data: { authGuardPipe: redirectLoggedIn},
   },
   {
     path: EDITOR,

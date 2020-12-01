@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "pencil-4fe05"
+  },
+  "targets": {
+    "pencil-4fe05": {
+      "hosting": {
+        "pencil-fe": [
+          "pencil-4fe05"
+        ]
+      }
+    }
+  }
+}

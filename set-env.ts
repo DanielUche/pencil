@@ -1,13 +1,8 @@
 const fs = require('fs');
 const { writeFile } = fs;
 // Configure Angular `environment.ts` file path
-let targetPath;
+let targetPath = './src/environments/environment.ts'
 
-if (process.env.NODE_ENV) {
-    targetPath = './src/environments/environment.ts'
-} else {
-    targetPath = './src/environments/environment.prod.ts'
-}
 // Load node modules
 const colors = require('colors');
 require('dotenv').config({path: './.env'});

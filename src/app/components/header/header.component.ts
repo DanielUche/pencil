@@ -19,6 +19,7 @@ export class HeaderComponent {
     private readonly auth: AuthService,
     private readonly snackBar: MatSnackBar,
     private readonly router: Router,
+    private _router: Router,
   ) {}
 
   login() {
@@ -34,15 +35,7 @@ export class HeaderComponent {
         }),
       )
       .subscribe(
-        (response) =>
-          response &&
-          this.snackBar.open(
-            `Oh! You're here. I demand that you feed me, Hooman. 😾`,
-            'Close',
-            {
-              duration: 4000,
-            },
-          ),
+        (response) => this.router.navigate(['/editor'])
       );
   }
 
@@ -52,7 +45,7 @@ export class HeaderComponent {
       .pipe(take(1))
       .subscribe((response) => {
         this.router.navigate([`/${HOME}`]);
-        this.snackBar.open('Come back soon with treats! 😿', 'Close', {
+        this.snackBar.open('Come back soon! 😿', 'Close', {
           duration: 4000,
         });
       });
