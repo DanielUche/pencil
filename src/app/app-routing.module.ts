@@ -7,9 +7,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BASE, HOME, EDITOR, TEXTAREA } from './constants';
-import { HomeComponent } from './components/home/home.component'
-import { EditorComponent } from './editor/editor.component';
-import { WithTextareaComponent } from './with-textarea/with-textarea.component';
+import { HomeComponent } from './pages/home/home.component';
+import { EditorComponent } from './pages/editor/editor.component';
+import { WithTextareaComponent } from './pages/with-textarea/with-textarea.component';
 
 
 

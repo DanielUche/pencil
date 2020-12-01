@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppFirebaseModule } from './modules/app-firebase.module';
 import { AppMaterialModule } from './modules/app-material.module';
-import { HomeComponent } from './components/home/home.component';
+
 import { ProfileCardComponent } from './components/profile-card/profile-card.component';
 import { HeaderComponent } from './components/header/header.component';
-import { EditorComponent } from './editor/editor.component';
+import { EditorComponent } from './pages/editor/editor.component';
 import { MathjaxComponent } from './components/mathjax/mathjax.component';
-import { WithTextareaComponent } from './with-textarea/with-textarea.component';
+import { WithTextareaComponent } from './pages/with-textarea/with-textarea.component';
+import { HomeComponent } from './pages/home/home.component';
+
 
 
 

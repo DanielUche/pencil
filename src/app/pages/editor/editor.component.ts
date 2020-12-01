@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import MediumEditor from 'medium-editor'
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from "@angular/fire/firestore";
-import { MEDIUMCONFIG } from '../constants';
+import { MEDIUMCONFIG } from 'src/app/constants';
+
 
 interface FormData {
   userID: string;
